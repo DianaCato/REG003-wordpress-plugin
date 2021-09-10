@@ -31,13 +31,26 @@ function CreateMenu(){
         'Laboratoria WhatsApp Plugin',//Titulo pagina
         'Menu Laboratoria WhatsApp Plugin',//Titulo menu
         'manage_options', //Permisos
-        'lwp_menu', //slog "unico"
-        'ShowContent',//funcion contenido de la pagina
-        plugin_dir_url(__FILE__).'admin/img/whatsapp.png',
-        '1'
+        plugin_dir_path(__FILE__).'admin/whatsapp-plugin.php', //slog "unico"
+        null,//funcion contenido de la pagina
+        plugin_dir_url(__FILE__).'admin/img/whatsapp.png',//icono
+        '1' //prioridad en menu
     );
+
+    // add_submenu_page(
+    //     'lwp_menu', // slog padre
+    //     'ajustes', // titulo pagina
+    //     'ajustes', // titulo menu
+    //     'manage_options', //Permisos
+    //     'lwp_menu_ajustes', //slog "unico"
+    //     'Submenu'
+    // );
 }
 
 function ShowContent(){
     echo '<h1>Contenido de la pagina</h1>';
 }
+
+// function Submenu(){
+//     echo '<h1>Submenu</h1>';
+// }
