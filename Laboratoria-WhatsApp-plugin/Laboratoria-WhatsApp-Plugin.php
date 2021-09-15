@@ -13,7 +13,18 @@ Author 1 URI: https://github.com/DianaCato
 Author 2 URI: https://github.com/NataliaGaravito
 */
 
-function Activate (){}
+function Activate (){
+    global $wpdb;
+
+    $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}WhatsAppPlugin(
+        `id_whatsapp_plugin` INT NOT NULL AUTO_INCREMENT,
+        `enterprise_name` VARCHAR(45) NULL,
+        `number` VARCHAR(45) NULL,
+        `message` VARCHAR(45) NULL,
+        PRIMARY KEY (`id_whatsapp_plugin`))";
+
+    $wpdb->query($sql);
+}
 
 function Deactivate(){
     flush_rewrite_rules ();
@@ -23,8 +34,8 @@ register_activation_hook(__FILE__,'Activate');
 register_deactivation_hook(__FILE__,'Deactivate');
 
 function CreateMenu(){   
-    global $custom_menu;
-    $custom_menu = add_menu_page(
+    global $menu_page;
+    $menu_page = add_menu_page(
         'Laboratoria WhatsApp Plugin',//Titulo pagina
         'Menu Laboratoria WhatsApp Plugin',//Titulo menu
         'manage_options', //Permisos
