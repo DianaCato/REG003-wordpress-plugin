@@ -1,5 +1,5 @@
 <script>
-  export let message;
+  export let message, toggle;
   const helpersMessage = [
     "Nombre de la empresa o persona con la cual se contactara el usuario por medio del plugin de WhatsApp.Propietario o responsable del numero de WhatsApp a ingresar ",
     "Selecciona el país del número que desea registrar. Posteriormente ingrese el número de contacto, sin caracteres adicionales ni espacios",
@@ -8,18 +8,24 @@
 </script>
 
 <div>
-  X
-  <span>{helpersMessage[message]}</span>
+  <span on:click={toggle}> X</span>
+  <p>{helpersMessage[message]}</p>
 </div>
 
 <style>
   div {
-    width: 90%;
-    height: 8vh;
+    display: flex;
+    width: 95%;
+    height: 12vh;
     background-color: #61c36c;
     border-radius: 20px;
   }
-  span {
+  p {
     color: #fff;
+    margin: 0.5em;
+    line-height: normal;
+  }
+  span{
+    margin: 0.3em;
   }
 </style>

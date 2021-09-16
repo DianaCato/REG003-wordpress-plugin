@@ -1,6 +1,15 @@
 <script>
 	import {allCountries} from "./countries";
 	import Helper from "./Helper.svelte";
+	let viewHelper = { 
+		enterprise: false,
+		phone: false,
+		messageUser: false
+	 };
+
+	function toggle(view) {
+		viewHelper[view] = !viewHelper[view];
+}
 </script>
 
 <main>
@@ -19,29 +28,40 @@
 	<h2>Ajutes</h2>
 	<p class="bold">Ingresa los datos para generar el link unico del plugin de tu empresa</p>
 	<form method="POST" name="form">
-		<p>
+		<div class="p">
 			Nombre de la Empresa
 			<input type="text" name="enterpriseName" />
-			<img src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png" alt="icon">
-		</p>
+			{#if viewHelper.enterprise}
+			<Helper message={0} toggle={() => toggle('enterprise')}/>
+			{:else}
+			<img src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png" alt="icon" on:click={() => toggle('enterprise')}>
+			{/if}
+		</div>
 		<div class="p">
-			<span>Numero WhatsApp de Contacto de la Empresa</span> 
+			Numero WhatsApp de Contacto de la Empresa 
 			<div>
 				<select name="select">
 					{#each allCountries as country }
 						<option value={country[2]}>{country[0]}</option>
 					{/each}					
 				</select>
-				<input type="tell" name="number" />
+				<input type="tell" name="number" class="tell"/>
 			</div>
-			<img src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png" alt="icon">
+			{#if viewHelper.phone}
+			<Helper message={1} toggle={() => toggle('phone')}/>
+			{:else}
+			<img src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png" alt="icon" on:click={() => toggle('phone')}>
+			{/if}
 		</div>
-		<p>
+		<div class="p">
 			Mensaje que te Enviaran tus Clientes  para Contactarte
 			<input type="text" name="message" />
-			<!-- <img src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png" alt="icon"> -->
-			<Helper message={2}/>
-		</p>
+			{#if viewHelper.messageUser}
+			<Helper message={2} toggle={() => toggle('messageUser')}/>
+			{:else}
+			<img src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png" alt="icon" on:click={() => toggle('messageUser')}>
+			{/if}
+		</div>
 
 		<button>Guardar cambios</button>
 	</form>
@@ -76,29 +96,29 @@
 	}
 	.bold {
 		font-weight: bold;
+		text-align: start;
+    padding: 0 1rem;
 	}
 	h2 {
 		font-size: 2em;
 		color: #256f2d;
 	}
-	h2,
-	p, span {
+	h2,	.p {
 		text-align-last: start;
 		padding: 0 1rem;
-	}
-	p, span {
-		font-size: 1rem;
-		align-items: center;
 	}
 	form img {
 		width: 5vh;
 		align-self: center;
 		padding: 0 2rem;
 	}
-	form p, .p {
+	.p {
 		text-align: start;
 		display: grid;
 		grid-template-columns: 30% 40% 30%;
+		margin-bottom: 1rem;
+		font-size: 1rem;
+		align-items: center;
 	}
 	input {
 		width: 80%;
@@ -115,14 +135,11 @@
 		width: 20%;
 		height: 8vh;
 	}
-	.p input {
+	.tell {
 		width: 58%;
 	}
 	.p div {
 		display: flex;
 		justify-content: center;
-	}
-	span {
-		margin-top: 1.5em;
 	}
 </style>
