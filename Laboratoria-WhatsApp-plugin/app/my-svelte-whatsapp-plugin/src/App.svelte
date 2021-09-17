@@ -1,15 +1,16 @@
 <script>
-	import {allCountries} from "./countries";
+	import { allCountries } from "./countries";
 	import Helper from "./Helper.svelte";
-	let viewHelper = { 
+	let viewHelper = {
 		enterprise: false,
 		phone: false,
-		messageUser: false
-	 };
+		messageUser: false,
+	};
 
 	function toggle(view) {
 		viewHelper[view] = !viewHelper[view];
-}
+	}
+	let selected;
 </script>
 
 <main>
@@ -26,40 +27,54 @@
 	</div>
 
 	<h2>Ajutes</h2>
-	<p class="bold">Ingresa los datos para generar el link unico del plugin de tu empresa</p>
+	<p class="bold">
+		Ingresa los datos para generar el link unico del plugin de tu empresa
+	</p>
 	<form method="POST" name="form">
 		<div class="p">
 			Nombre de la Empresa
 			<input type="text" name="enterpriseName" />
 			{#if viewHelper.enterprise}
-			<Helper message={0} toggle={() => toggle('enterprise')}/>
+				<Helper message={0} toggle={() => toggle("enterprise")} />
 			{:else}
-			<img src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png" alt="icon" on:click={() => toggle('enterprise')}>
+				<img
+					src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png"
+					alt="icon"
+					on:click={() => toggle("enterprise")}
+				/>
 			{/if}
 		</div>
 		<div class="p">
-			Numero WhatsApp de Contacto de la Empresa 
+			Numero WhatsApp de Contacto de la Empresa
 			<div>
-				<select name="select">
-					{#each allCountries as country }
+				<select name="select"  bind:value={selected} >
+					{#each allCountries as country}
 						<option value={country[2]}>{country[0]}</option>
-					{/each}					
+					{/each}
 				</select>
-				<input type="tell" name="number" class="tell"/>
+				<input type="number" name="number" class="tell" minlength="3" />
 			</div>
 			{#if viewHelper.phone}
-			<Helper message={1} toggle={() => toggle('phone')}/>
+				<Helper message={1} toggle={() => toggle("phone")} />
 			{:else}
-			<img src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png" alt="icon" on:click={() => toggle('phone')}>
+				<img
+					src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png"
+					alt="icon"
+					on:click={() => toggle("phone")}
+				/>
 			{/if}
 		</div>
 		<div class="p">
-			Mensaje que te Enviaran tus Clientes  para Contactarte
+			Mensaje que te Enviaran tus Clientes para Contactarte
 			<input type="text" name="message" />
 			{#if viewHelper.messageUser}
-			<Helper message={2} toggle={() => toggle('messageUser')}/>
+				<Helper message={2} toggle={() => toggle("messageUser")} />
 			{:else}
-			<img src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png" alt="icon" on:click={() => toggle('messageUser')}>
+				<img
+					src="https://cdn-icons-png.flaticon.com/512/3888/3888547.png"
+					alt="icon"
+					on:click={() => toggle("messageUser")}
+				/>
 			{/if}
 		</div>
 
@@ -97,13 +112,14 @@
 	.bold {
 		font-weight: bold;
 		text-align: start;
-    padding: 0 1rem;
+		padding: 0 1rem;
 	}
 	h2 {
 		font-size: 2em;
 		color: #256f2d;
 	}
-	h2,	.p {
+	h2,
+	.p {
 		text-align-last: start;
 		padding: 0 1rem;
 	}
@@ -116,7 +132,7 @@
 		text-align: start;
 		display: grid;
 		grid-template-columns: 30% 40% 30%;
-		margin-bottom: 1rem;
+		height: 12vh;
 		font-size: 1rem;
 		align-items: center;
 	}
@@ -126,12 +142,12 @@
 		height: 8vh;
 	}
 	button {
-		background-color: #61C36C;
+		background-color: #61c36c;
 		border-radius: 20px;
 		width: 10vw;
 		height: 5vh;
 	}
-	select{
+	select {
 		width: 20%;
 		height: 8vh;
 	}
@@ -141,5 +157,10 @@
 	.p div {
 		display: flex;
 		justify-content: center;
+	}
+	input[type="number"]::-webkit-inner-spin-button,
+	input[type="number"]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
 	}
 </style>

@@ -3,6 +3,6 @@
         $enterpriseName = $_POST["enterpriseName"];
         $enterpriseNumber = $_POST["number"];
         $enterpriseMessage = $_POST["message"];
-        var_dump($_POST["enterpriseName"]);
+        var_dump($_POST["select"]);
     }
 ?>

@@ -16,7 +16,7 @@
   div {
     display: flex;
     width: 95%;
-    height: 12vh;
+    height: 10vh;
     background-color: #61c36c;
     border-radius: 20px;
   }
@@ -27,5 +27,6 @@
   }
   span{
     margin: 0.3em;
+    cursor: pointer;
   }
 </style>
