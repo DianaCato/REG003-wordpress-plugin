@@ -1,7 +1,11 @@
 #html
 /html/*
 !/html/.keep
-
+!/html/wp-content/
+/html/wp-content/*
+!/html/wp-content/plugins
+/html/wp-content/plugins/*
+!/html/wp-content/plugins/Laboratoria-WhatsApp-plugin
 #mysql
 /php-playground/*
 !/php-playground/hola.php
