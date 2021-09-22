@@ -1,4 +1,19 @@
+<?php
+  global $wpdb;
 
+  $sql = "SELECT * FROM {$wpdb->prefix}WhatsAppPlugin";
+  $answersql = $wpdb->get_results($sql,ARRAY_A);
+  $rowcount = ($wpdb->num_rows)-1;
+
+  function encodeURIComponent($str) {
+    $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+    return strtr(rawurlencode($str), $revert);
+  }
+
+  $enterpriseNumber = $answersql[$rowcount]["number"];
+  $messageEncode = encodeURIComponent($answersql[$rowcount]["message"]);
+  $url = "https://wa.me/{$enterpriseNumber}/?text={$messageEncode}";
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -22,11 +37,7 @@
   </head>
   <body>
     <?php
-        // require_once(plugin_dir_path(__FILE__).'whatsapp-plugin.php');
-        // global $newurl;
-        // echo $newurl;
-         echo "<a class='btn' href='{$url}'>Contacto WhatsApp</a>";
-         echo "url $url "
+        echo "<a class='btn' href='{$url}'>Contacto WhatsApp</a>";
     ?>
   </body>
 </html>
