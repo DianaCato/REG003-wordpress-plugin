@@ -1,7 +1,7 @@
 <?php        
     global $wpdb, $url;
     global $promiseUrl;
-    $promiseUrl = new Promise();
+    //$promiseUrl = new Promise();
 
     function encodeURIComponent($str) {
         $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');

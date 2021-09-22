@@ -22,10 +22,11 @@
   </head>
   <body>
     <?php
-        require_once(plugin_dir_path(__FILE__).'whatsapp-plugin.php');
-        global $newurl;
-        echo $newurl;
-        echo "<a class='btn' href='{$url}'>Contacto WhatsApp</a>";
+        // require_once(plugin_dir_path(__FILE__).'whatsapp-plugin.php');
+        // global $newurl;
+        // echo $newurl;
+         echo "<a class='btn' href='{$url}'>Contacto WhatsApp</a>";
+         echo "url $url "
     ?>
   </body>
 </html>
