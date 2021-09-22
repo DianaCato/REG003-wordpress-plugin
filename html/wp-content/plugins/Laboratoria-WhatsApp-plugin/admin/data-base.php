@@ -1,7 +1,5 @@
 <?php        
-    global $wpdb, $url;
-    global $promiseUrl;
-    $promiseUrl = new Promise();
+    global $wpdb;
 
     function encodeURIComponent($str) {
         $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
@@ -19,12 +17,10 @@
         $sql = "INSERT INTO wp_WhatsAppPlugin ". "(enterprise_name, number, message) ". "VALUES ('$enterpriseName', '$enterpriseNumber', '$enterpriseMessage')";      
 
         if ($wpdb->query($sql)) {
-            $url = "https://wa.me/{$enterpriseNumber}/?text={$messageEncode}";
-            //$promiseUrl->resolve($url);
-            echo "New record created successfully in " . "https://wa.me/{$enterpriseNumber}/?text={$messageEncode}";
-            } else {
-            echo "Error: " . $sql . "<br>" . $wpdb->error;
-            }          
+        echo "New record created successfully in " . "https://wa.me/{$enterpriseNumber}/?text={$messageEncode}";
+        } else {
+        echo "Error: " . $sql . "<br>" . $wpdb->error;
+        }          
     }
     
     
