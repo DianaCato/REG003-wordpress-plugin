@@ -86,7 +86,7 @@
 	main {
 		text-align: center;
 		height: 80vh;
-		margin: 0 auto;
+		margin: 1.3rem 1.3rem 0 0;
 		background-image: url("https://i.pinimg.com/originals/62/40/b6/6240b66d5c50c8661eee78b439a7d33c.jpg");
 		background-repeat: round;
 	}

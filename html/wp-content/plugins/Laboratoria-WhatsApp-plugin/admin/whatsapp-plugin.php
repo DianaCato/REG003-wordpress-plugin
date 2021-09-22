@@ -4,9 +4,17 @@ echo    '<div id="svelte-admin"></div>';
 
 require_once(plugin_dir_path(__FILE__).'data-base.php');
 
-// if(isset($_POST["enterpriseName"])){
-//     $enterpriseName = $_POST["enterpriseName"];
-//     $enterpriseNumber = $_POST["number"];
-//     $enterpriseMessage = $_POST["message"];
-//     var_dump($_POST["enterpriseName"]);
-// }
+/*lobal $url, $promiseUrl;
+
+$promiseUrl->then(
+    function ($value){
+        if($root == "/"){
+            echo $value;
+        }else{
+            echo $url;
+            echo "nopiti";
+        }
+    }
+);*/
+
+
