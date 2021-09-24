@@ -24,8 +24,6 @@ services:
       - ./apache2/ports.conf:/etc/apache2/ports.conf
       - ./apache2/sites-available:/etc/apache2/sites-available
       - ./apache2/sites-enabled:/etc/apache2/sites-enabled
-    command:
-      bash -c 'apt-get update && apt-get install sudo && sudo apt-get install wget && wget https://phar.phpunit.de/phpunit-7.5.9.phar && wget https://phar.phpunit.de/phpunit-7.5.9.phar && sudo mv phpunit-7.5.9.phar /usr/local/bin/phpunit' 
     ports:
       - "80:80"
       - "8080:8080"
