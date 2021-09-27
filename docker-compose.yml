@@ -23,11 +23,7 @@ services:
       - ./php-playground:/var/www/php-playground
       - ./apache2/ports.conf:/etc/apache2/ports.conf
       - ./apache2/sites-available:/etc/apache2/sites-available
-<<<<<<< HEAD
-      - ./apache2/sites-enabled:/etc/apache2/sites-enabled 
-=======
       - ./apache2/sites-enabled:/etc/apache2/sites-enabled
->>>>>>> ef3dc5a8780eb2edae1fdf77c349cacde304bf45
     ports:
       - "80:80"
       - "8080:8080"
