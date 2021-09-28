@@ -1,4 +1,9 @@
 {
+    "autoload": {
+        "classmap": [
+            "html/wp-content/plugins/Laboratoria-WhatsApp-plugin"
+        ]
+    },
     "require-dev": {
         "phpunit/phpunit": "^7.5"
     }

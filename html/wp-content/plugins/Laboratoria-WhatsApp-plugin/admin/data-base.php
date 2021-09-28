@@ -21,10 +21,6 @@
         } else {
         echo "Error: " . $sql . "<br>" . $wpdb->error;
         }          
-    }
-    
-    
-
-    
+    }   
     
 ?>
