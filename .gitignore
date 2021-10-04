@@ -6,6 +6,7 @@
 !/html/wp-content/plugins
 /html/wp-content/plugins/*
 !/html/wp-content/plugins/Laboratoria-WhatsApp-plugin
+!/html/wp-content/plugins/flash-memory
 #mysql
 /php-playground/*
 !/php-playground/hola.php
