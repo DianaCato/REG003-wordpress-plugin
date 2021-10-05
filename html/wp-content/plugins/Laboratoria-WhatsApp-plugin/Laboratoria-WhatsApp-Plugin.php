@@ -60,7 +60,10 @@ function swp_dependencies($hook){
 add_action('admin_enqueue_scripts', 'swp_dependencies' );
 
 function button_dependencies(){
-    require_once(plugin_dir_path(__FILE__).'admin/whatsapp-button.php');
+    require_once(plugin_dir_path(__FILE__).'admin/bot/index.php');
+    wp_enqueue_script( 'swp', plugin_dir_url(__FILE__).'admin/bot/app.js', array(), time(), true );
+    wp_enqueue_style( 'swp', plugin_dir_url(__FILE__).'admin/bot/css/style.css', array(), time() );
+
 }
 
 add_action( 'wp_enqueue_scripts', 'button_dependencies' );
