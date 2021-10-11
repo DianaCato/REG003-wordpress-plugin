@@ -13,7 +13,7 @@ Author 1 URI: https://github.com/DianaCato
 Author 2 URI: https://github.com/NataliaGaravito
 */
 
-function Activate (){
+function Activate(){
     global $wpdb;
 
     $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}WhatsAppPlugin(
@@ -52,8 +52,8 @@ function swp_dependencies($hook){
     if ('Laboratoria-WhatsApp-plugin/admin/whatsapp-plugin.php' != $hook) {
         return;
     }
-    wp_enqueue_script( 'swp', plugin_dir_url(__FILE__).'app/my-svelte-whatsapp-plugin/public/build/bundle.js', array(), time(), true );
-    wp_enqueue_style( 'swp', plugin_dir_url(__FILE__).'app/my-svelte-whatsapp-plugin/public/build/bundle.css', array(), time() );
+    wp_enqueue_script( 'swp', plugin_dir_url(__FILE__).'app1/my-svelte-whatsapp-plugin/public/build/bundle.js', array(), time(), true );
+    wp_enqueue_style( 'swp', plugin_dir_url(__FILE__).'app1/my-svelte-whatsapp-plugin/public/build/bundle.css', array(), time() );
     
 } 
 
