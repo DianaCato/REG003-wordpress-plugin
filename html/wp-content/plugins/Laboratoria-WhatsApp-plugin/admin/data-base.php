@@ -15,7 +15,7 @@
 
     function sendData($enterpriseData){
         global $wpdb;
-        $sql = "INSERT INTO wp_WhatsAppPlugin ". "(enterprise_name, number, message) ". "VALUES ('$enterpriseData[0]', '$enterpriseData[1]', '$enterpriseData[2]')";      
+        $sql = "INSERT INTO {$wpdb->prefix}WhatsAppPlugin ". "(enterprise_name, number, message) ". "VALUES ('$enterpriseData[0]', '$enterpriseData[1]', '$enterpriseData[2]')";      
 
         if ($wpdb->query($sql)) {
             $sendMessage = "New record created successfully in " . "https://wa.me/{$enterpriseData[1]}/?text={$enterpriseData[3]}";
@@ -24,7 +24,7 @@
             $sendMessage = "Error: " . $sql . "<br>" . $wpdb->error;
             return $sendMessage;
         }
-    }
+    } 
     
     function verifyGaps (){
         if((empty($_POST["enterpriseName"])) || (empty($_POST["number"])) || (empty($_POST["message"]))){

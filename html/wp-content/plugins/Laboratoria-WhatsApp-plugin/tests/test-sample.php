@@ -9,10 +9,11 @@
  * Sample test case.
  */
 
+
  require_once (plugin_dir_path(__DIR__).'admin/data-base.php');
  require_once (plugin_dir_path(__DIR__).'Laboratoria-WhatsApp-plugin.php');
 
-class TestFunctionEncodeURI extends WP_UnitTestCase {
+class TestFunction extends WP_UnitTestCase {
 
 	public function test_encodeURI() {
 		$messageEncode = 'This%20is%20a%20test%20message';
@@ -29,10 +30,7 @@ class TestFunctionEncodeURI extends WP_UnitTestCase {
 		$result = encodeURI(12345);		
 		$this->assertEquals( $messageEncode, $result );
 	}
-
-}
-
-class TestFunctionGetData extends WP_UnitTestCase {
+	//--------//
 
 	public function test_getData() {
 		$answerArray = ['Paquita la del barrio', '573133133122', 'Bienvenidos a paquita', 'Bienvenidos%20a%20paquita'];
@@ -40,19 +38,28 @@ class TestFunctionGetData extends WP_UnitTestCase {
 		$result = getData();		
 		$this->assertEquals( $answerArray, $result );
 	}
-}
+	//-----//
 
-class TestFunctionSendData extends WP_UnitTestCase {
-
-	public function test_sendData() {
-		$arrayTest = ['Paquita la del barrio', '573133133122', 'Bienvenidos a paquita','Bienvenidos%20a%20paquita'];
-    	$messageTest = "New record created successfully in " . "https://wa.me/{$arrayTest[1]}/?text={$arrayTest[3]}";
-		$result = sendData($arrayTest);		
-		$this->assertEquals( $messageTest, $result );
-	}
-}
-
-class TestFunctionverifyGaps extends WP_UnitTestCase {
+    function setUp(){
+        parent::setUp(); 
+        global $wpdb; 
+    
+        $sql = "CREATE TABLE IF NOT EXISTS {$wpdb->prefix}WhatsAppPlugin(
+            `id_whatsapp_plugin` INT NOT NULL AUTO_INCREMENT,
+            `enterprise_name` VARCHAR(45) NULL,
+            `number` VARCHAR(45) NULL,
+            `message` VARCHAR(45) NULL,
+            PRIMARY KEY (`id_whatsapp_plugin`))";
+    
+        $wpdb->query($sql);
+    }
+    public function test_sendData() {
+        $arrayTest = ['Paquita la del barrio', '573133133122', 'Bienvenidos a paquita','Bienvenidos%20a%20paquita'];
+        $messageTest = "New record created successfully in " . "https://wa.me/{$arrayTest[1]}/?text={$arrayTest[3]}";
+        $result = sendData($arrayTest);		
+        $this->assertEquals( $messageTest, $result );
+    }
+	//------//
 
 	public function test_verifyEmptyGaps() {
 		$answerEcho = 'Missing Spaces';
@@ -67,10 +74,10 @@ class TestFunctionverifyGaps extends WP_UnitTestCase {
 		$this->expectOutputString($answerEcho);
 	}
 
-	/*public function test_verifyEmptyGaps() {
+	public function test_verifySuccessful() {
 		$_POST = array("enterpriseName"=>'Paquita la del barrio', "select"=>57, "number"=>3133133122, "message"=>'Bienvenidos a paquita');
 		$answerEcho = "New record created successfully in " . "https://wa.me/573133133122/?text=Bienvenidos%20a%20paquita";
 		verifyGaps();
 		$this->expectOutputString($answerEcho);
-	}*/
+	}
 }
